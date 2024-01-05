@@ -1,0 +1,3 @@
+add_subdirectory(SqList)
+add_subdirectory(LinkList)
+add_subdirectory(MergeList)

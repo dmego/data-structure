@@ -1,0 +1,8 @@
+add_subdirectory(InsertSort)
+add_subdirectory(BInsertSort)
+add_subdirectory(ShellInsert)
+add_subdirectory(BubbleSort)
+add_subdirectory(QuickSort)
+add_subdirectory(SelectSort)
+add_subdirectory(HeapSort)
+add_subdirectory(MergeSort)

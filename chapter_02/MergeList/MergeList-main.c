@@ -1,0 +1,13 @@
+/*
+ defend
+ uphold the law
+ personal property
+ a proper job
+ interact with each other
+ job prospect
+ restrain
+
+
+
+
+ */
