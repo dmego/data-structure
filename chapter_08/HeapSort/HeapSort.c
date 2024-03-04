@@ -8,9 +8,9 @@
  * @param j
  */
 void swap(SqList *list, int i, int j) {
-    int temp = list->elemData[i];
-    list->elemData[i] = list->elemData[j];
-    list->elemData[j] = temp;
+    int temp = list->data[i];
+    list->data[i] = list->data[j];
+    list->data[j] = temp;
 }
 
 /**
@@ -21,7 +21,7 @@ void swap(SqList *list, int i, int j) {
  */
 void HeapAdjust(SqList *list, int k, int len) {
     // 将要调整的子树的根节点 list[k] 暂存到 list[0]
-    list->elemData[0] = list->elemData[k];
+    list->data[0] = list->data[k];
     /*
       遍历以 list[k] 为根的子树，将该子树调整为堆
       初始时 i = k * 2, 也就是 list[k] 结点的左孩子结点
@@ -30,18 +30,18 @@ void HeapAdjust(SqList *list, int k, int len) {
      */
     for (int i = k * 2; i <= len; i *= 2) {
         // 比较 list[k] 左右孩子的大小，保证 list[i] 是左右孩子中的最大值
-        if (i + 1 <= len && list->elemData[i] < list->elemData[i + 1]) i++;
+        if (i + 1 <= len && list->data[i] < list->data[i + 1]) i++;
         // 如果根结点 list[k] 比左右孩子都要大，则不需要进行调整，退出循环
-        if (list->elemData[0] >= list->elemData[i]) break;
+        if (list->data[0] >= list->data[i]) break;
         else {
             // 否则，将 较大值 list[i] 复制到根结点 list[k] 位置
-            list->elemData[k] = list->elemData[i];
+            list->data[k] = list->data[i];
             // k = i, list[k] 表示下一次循环要调整的子树的根结点
             k = i;
         }
     }
     // 循环结束后，将 原始根结点 list[0] 复制到 list[k] 位置
-    list->elemData[k] = list->elemData[0];
+    list->data[k] = list->data[0];
 }
 
 /**
@@ -92,15 +92,15 @@ int main() {
 
     // 初始化顺序表，数据为 [49,38,65,97,49,76,13,27]
     SqList list;
-    initSqList(&list);
-    insertElem2(&list, 1, 49);
-    insertElem2(&list, 2, 38);
-    insertElem2(&list, 3, 65);
-    insertElem2(&list, 4, 97);
-    insertElem2(&list, 5, 49);
-    insertElem2(&list, 6, 76);
-    insertElem2(&list, 7, 13);
-    insertElem2(&list, 8, 27);
+    InitList(&list);
+    ListInsert(&list, 1, 49);
+    ListInsert(&list, 2, 38);
+    ListInsert(&list, 3, 65);
+    ListInsert(&list, 4, 97);
+    ListInsert(&list, 5, 49);
+    ListInsert(&list, 6, 76);
+    ListInsert(&list, 7, 13);
+    ListInsert(&list, 8, 27);
     printf("排序前：\n");
     printList(&list);
     // 堆排序

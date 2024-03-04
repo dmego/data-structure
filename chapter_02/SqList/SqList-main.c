@@ -1,34 +1,21 @@
-#include <stdio.h>
 #include "SqList.h"
 
 int main() {
 
-    SqList list;
+    SqList L;
+    ElemType e;
+    InitList(&L);
+    ListInsert(&L, 1, 1);
+    ListInsert(&L, 2, 2);
+    ListInsert(&L, 3, 3);
+    ListInsert(&L, 4, 4);
 
-    ElemType elem;
+    ListInsert(&L, 2, 5);
 
-    Status status = initSqList(&list); // 初始化顺序表
-    printf("learnClang status: %d\n", status);
-    insertElem(&list, 1, 1);
-    insertElem(&list, 2, 2);
-    insertElem(&list, 3, 3);
-    insertElem(&list, 2, 4);
+    ListDelete(&L, 2, &e);
 
+    int lo = LocateElem(L, 4);
 
-    for (int i = 1; i <= list.length; i++) {
-        getElem(&list, i, &elem);
-        printf("get elem[%d]: %d\n", i, elem);
-    }
-
-    deleteElem(&list, 2, &elem);
-    printf("delete elem: %d\n", elem);
-
-    for (int i = 1; i <= list.length; i++) {
-        getElem(&list, i, &elem);
-        printf("get elem[%d]: %d\n", i, elem);
-    }
-
-
-
-    destroyList(&list);
+    printf("hh");
+    printf("lo: %d", lo);
 }

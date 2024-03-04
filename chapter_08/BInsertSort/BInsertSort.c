@@ -11,7 +11,7 @@ void BInsertSort(SqList *list) {
     // 外层循环控制要排序的元素个数, list[0] 是哨兵；list[1] 是初始已排序数组元素，从list[2]开始排序
     for (i = 2; i <= list->length; i++) {
         // 将待排序元素复制到哨兵 list[0] 位置
-        list->elemData[0] = list->elemData[i];
+        list->data[0] = list->data[i];
         // 利用折半查找，找到待排序元素要插入的位置
         int low = 1, high = i - 1;
         // 循环条件为 low <= high, 循环结束时，一定是 low = high + 1
@@ -19,7 +19,7 @@ void BInsertSort(SqList *list) {
             // 计算中间位置
             int mid = (low + high) / 2;
             // 如果 list[0] < list[mid] 说明待排序元素应该插入到 list[mid] 之前位置
-            if (list->elemData[0] < list->elemData[mid]) {
+            if (list->data[0] < list->data[mid]) {
                 high = mid - 1;
             }
             /*
@@ -36,10 +36,10 @@ void BInsertSort(SqList *list) {
         }
         // 将 low 位置及其后面的元素后移一位
         for (j = i - 1; j >= low; j--) {
-            list->elemData[j + 1] = list->elemData[j];
+            list->data[j + 1] = list->data[j];
         }
         // 将待排序元素复制到 list[low] 位置
-        list->elemData[low] = list->elemData[0];
+        list->data[low] = list->data[0];
     }
 }
 
@@ -47,14 +47,14 @@ int main() {
 
     // 初始化顺序表，数据为 [49,38,65,97,76,13,27]
     SqList list;
-    initSqList(&list);
-    insertElem2(&list, 1, 49);
-    insertElem2(&list, 2, 38);
-    insertElem2(&list, 3, 65);
-    insertElem2(&list, 4, 97);
-    insertElem2(&list, 5, 76);
-    insertElem2(&list, 6, 13);
-    insertElem2(&list, 7, 27);
+    InitList(&list);
+    ListInsert(&list, 1, 49);
+    ListInsert(&list, 2, 38);
+    ListInsert(&list, 3, 65);
+    ListInsert(&list, 4, 97);
+    ListInsert(&list, 5, 76);
+    ListInsert(&list, 6, 13);
+    ListInsert(&list, 7, 27);
     printf("排序前：\n");
     printList(&list);
     // 插入排序
