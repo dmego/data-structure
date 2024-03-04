@@ -1,3 +1,4 @@
+add_subdirectory(Util)
 add_subdirectory(InsertSort)
 add_subdirectory(BInsertSort)
 add_subdirectory(ShellInsert)

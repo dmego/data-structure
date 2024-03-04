@@ -1,11 +1,11 @@
 # 包含公共库
 include_directories(${CMAKE_SOURCE_DIR}/status)
-
 include_directories(${CMAKE_SOURCE_DIR}/chapter_02/SqList)
-
 # 包含静态库路径
 link_directories(${PROJECT_SOURCE_DIR}/lib)
-link_libraries(SqList_guard_lib)
+link_libraries(SqList_lib)
 
 # 生成可执行文件
-add_executable(SelectSort SelectSort.c)
+add_executable(exercises_01 exercises_01.c)
+add_executable(exercises_02 exercises_02.c)
+add_executable(exercises_03 exercises_03.c)

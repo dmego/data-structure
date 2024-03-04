@@ -15,7 +15,6 @@ void DestroyList(SqList *L) {
 
 /**
  * 在顺序表第 index (1 <= index <= length + 1) 个位置插入元素 e
- * (注意顺序表元素下标从 1 开始)
  */
 bool ListInsert(SqList *L, int index, ElemType e) {
     // 如果待插入位置不满足条件 返回 false
@@ -24,9 +23,10 @@ bool ListInsert(SqList *L, int index, ElemType e) {
     if (L->length >= MaxSize) return false;
     // 从后往前遍历，将 data[index] 及之后的元素全部后移一位
     for (int i = L->length; i >= index; i--) {
-        L->data[i] = L->data[i - 1];
+        L->data[i + 1] = L->data[i];
     }
-    L->data[index - 1] = e;
+    // 注意顺序表元素下标从 1 开始,并且包含哨兵
+    L->data[index] = e;
     // 顺序表长度加一
     L->length++;
     return true;
@@ -40,8 +40,8 @@ bool ListDelete(SqList *L, int index, ElemType *e) {
     if (index < 1 || index > L->length) return false;
     if (L->length == 0) return false;
     // 将删除元素赋值给 e
-    *e = L->data[index - 1];
-    for(int i = index - 1; i < L->length; i++) {
+    *e = L->data[index];
+    for(int i = index; i <= L->length; i++) {
         L->data[i] = L->data[i + 1];
     }
     L->length--;
@@ -54,7 +54,7 @@ bool ListDelete(SqList *L, int index, ElemType *e) {
 int LocateElem(SqList L, ElemType e) {
     if (L.length == 0) return 0;
     for (int i = 1; i <= L.length; i++) {
-        if (L.data[i - 1] == e) {
+        if (L.data[i] == e) {
             return i;
         }
     }
@@ -62,7 +62,7 @@ int LocateElem(SqList L, ElemType e) {
 }
 
 void printList(SqList *list) {
-    for (int i = 0; i < list->length; i++) {
+    for (int i = 1; i <= list->length; i++) {
         printf("%d ", list->data[i]);
     }
     printf("\n");

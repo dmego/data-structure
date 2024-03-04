@@ -11,5 +11,3 @@ add_subdirectory(chapter_03)
 add_subdirectory(chapter_04)
 add_subdirectory(chapter_05)
 add_subdirectory(chapter_08)
-
-add_subdirectory(wangdao2025)
