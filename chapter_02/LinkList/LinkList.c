@@ -186,6 +186,8 @@ Status headCreateList(LinkList* list, int num) {
         if (node == NULL) {
             exit(OVERFLOW);
         }
+        node->next = NULL;
+
         scanf("%d", &(node->data));
         node->next = head->next;
         head->next = node;
@@ -209,6 +211,8 @@ Status tailCreateList(LinkList* list, int num) {
         if (node == NULL) {
             exit(OVERFLOW);
         }
+        node->next = NULL;
+
         scanf("%d", &(node->data));
         tail->next = node;
         // 改变尾指针的指向

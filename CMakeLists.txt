@@ -3,6 +3,7 @@ project(data-structure C)
 
 set(CMAKE_C_STANDARD 11)
 
+add_subdirectory(test)
 add_subdirectory(learnClang)
 add_subdirectory(status)
 add_subdirectory(chapter_02)

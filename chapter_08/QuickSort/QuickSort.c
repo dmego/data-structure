@@ -8,9 +8,9 @@
  * @param j
  */
 void swap(SqList *list, int i, int j) {
-    int temp = list->elemData[i];
-    list->elemData[i] = list->elemData[j];
-    list->elemData[j] = temp;
+    int temp = list->data[i];
+    list->data[i] = list->data[j];
+    list->data[j] = temp;
 }
 
 /**
@@ -22,23 +22,23 @@ void swap(SqList *list, int i, int j) {
  */
 int partition1(SqList *list, int low, int high) {
     // 取区间第一个元素为枢轴，并保存置 list[0] 位置
-    int pivot = list->elemData[low];
-    list->elemData[0] = pivot;
+    int pivot = list->data[low];
+    list->data[0] = pivot;
     // 循环遍历区间
     while (low < high) {
         // 先从区间从右往左搜索，如果list[high] >= 枢轴元素，符合定义，high--
-        while (low < high && list->elemData[high] >= pivot) high--;
+        while (low < high && list->data[high] >= pivot) high--;
         // 否则，找到第一个小于 pivot 关键字的记录后，将其移动置 low 位置
-        list->elemData[low] = list->elemData[high];
+        list->data[low] = list->data[high];
 
         // 再从区间从左往右搜索，如果list[low] <= 枢轴元素，符合定义，low++
-        while (low < high && list->elemData[low] <= pivot) low++;
+        while (low < high && list->data[low] <= pivot) low++;
         // 否则，找到第一个大于 pivot 关键字的记录后，将其移动置 high 位置
-        list->elemData[high] = list->elemData[low];
+        list->data[high] = list->data[low];
     }
 
     // 循环结束之后，low = high = 枢轴位置，将枢轴元素复制到该位置
-    list->elemData[low] = list->elemData[0];
+    list->data[low] = list->data[0];
     // 返回枢轴下标
     return low;
 }
@@ -52,13 +52,13 @@ int partition1(SqList *list, int low, int high) {
  */
 int partition2(SqList *list, int low, int high) {
     // 取区间第一个元素为枢轴
-    int pivot = list->elemData[low];
+    int pivot = list->data[low];
     // mark 表示 小于等于枢轴的区域边界,初始时为枢轴下标
     int mark = low;
     // 遍历区间
     for (int i = low + 1; i <= high; i++) {
         // 如果 list[i] <= pivot, 则将 mark 区间边界扩大一位，将 list[i] 复制进去
-        if (list->elemData[i] <= pivot) {
+        if (list->data[i] <= pivot) {
             // 交换 list[mark + 1] 和 list[i] 元素位置
             swap(list, mark + 1, i);
             // mark 区间边界 + 1
@@ -100,14 +100,14 @@ int main() {
 
     // 初始化顺序表，数据为 [49,38,65,97,76,13,27]
     SqList list;
-    initSqList(&list);
-    insertElem2(&list, 1, 49);
-    insertElem2(&list, 2, 38);
-    insertElem2(&list, 3, 65);
-    insertElem2(&list, 4, 97);
-    insertElem2(&list, 5, 76);
-    insertElem2(&list, 6, 13);
-    insertElem2(&list, 7, 27);
+    InitList(&list);
+    ListInsert(&list, 1, 49);
+    ListInsert(&list, 2, 38);
+    ListInsert(&list, 3, 65);
+    ListInsert(&list, 4, 97);
+    ListInsert(&list, 5, 76);
+    ListInsert(&list, 6, 13);
+    ListInsert(&list, 7, 27);
     printf("排序前：\n");
     printList(&list);
     // 排序

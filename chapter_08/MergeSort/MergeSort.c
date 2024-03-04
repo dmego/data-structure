@@ -11,19 +11,19 @@
 void Merge(SqList *list, SqList *tList, int low, int mid, int high) {
     // 将 list[low, high] 复制到临时顺序表 tList[low, high]
     for (int i = low; i <= high; i++) {
-        insertElem2(tList, i, list->elemData[i]);
+        ListInsert(tList, i, list->data[i]);
     }
     // 遍历临时顺序表 tList，将前后两个子表归并到 原始表 list
     int i = low, j = mid + 1, k = low;
     while (i <= mid && j <= high) {
-        if (tList->elemData[i] <= tList->elemData[j]) list->elemData[k++] = tList->elemData[i++];
-        else list->elemData[k++] = tList->elemData[j++];
+        if (tList->data[i] <= tList->data[j]) list->data[k++] = tList->data[i++];
+        else list->data[k++] = tList->data[j++];
     }
     while (i <= mid) {
-        list->elemData[k++] = tList->elemData[i++];
+        list->data[k++] = tList->data[i++];
     }
     while (j <= high) {
-        list->elemData[k++] = tList->elemData[j++];
+        list->data[k++] = tList->data[j++];
     }
 }
 
@@ -53,7 +53,7 @@ void MSort(SqList *list, SqList *tList, int low, int high) {
 void MergeSort(SqList *list) {
     // 初始化一个临时顺序表
     SqList tList;
-    initSqList(&tList);
+    InitList(&tList);
     // 调用 MSort 递归进行2路归并排序
     MSort(list, &tList, 1, list->length);
 }
@@ -61,15 +61,15 @@ void MergeSort(SqList *list) {
 int main() {
     // 初始化顺序表，数据为 [49,38,65,97,49,76,13,27]
     SqList list;
-    initSqList(&list);
-    insertElem2(&list, 1, 49);
-    insertElem2(&list, 2, 38);
-    insertElem2(&list, 3, 65);
-    insertElem2(&list, 4, 97);
-    insertElem2(&list, 5, 49);
-    insertElem2(&list, 6, 76);
-    insertElem2(&list, 7, 13);
-    insertElem2(&list, 8, 27);
+    InitList(&list);
+    ListInsert(&list, 1, 49);
+    ListInsert(&list, 2, 38);
+    ListInsert(&list, 3, 65);
+    ListInsert(&list, 4, 97);
+    ListInsert(&list, 5, 49);
+    ListInsert(&list, 6, 76);
+    ListInsert(&list, 7, 13);
+    ListInsert(&list, 8, 27);
     printf("排序前：\n");
     printList(&list);
     // 归并排序
