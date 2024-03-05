@@ -29,6 +29,8 @@ bool ListDelete(SqList *L, int index, ElemType *e);
 
 int LocateElem(SqList L, ElemType e);
 
-void printList(SqList *list);
+void printList(SqList L);
+
+void swap(SqList *L, int a, int b);
 
 #endif

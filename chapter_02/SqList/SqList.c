@@ -61,13 +61,19 @@ int LocateElem(SqList L, ElemType e) {
     return 0;
 }
 
-void printList(SqList *list) {
-    for (int i = 0; i < list->length; i++) {
-        printf("%d ", list->data[i]);
+void printList(SqList L) {
+    for (int i = 0; i < L.length; i++) {
+        printf("%d ", L.data[i]);
     }
     printf("\n");
 }
 
+// 交换顺序表中，a 与 b 下标处的元素
+void swap(SqList *L, int a, int b) {
+    int temp = L->data[a];
+    L->data[a] = L->data[b];
+    L->data[b] = temp;
+}
 
 
 
