@@ -8,9 +8,49 @@
  */
 #include "SqList.h"
 
+void printSameItem(SqList *A, SqList *B, SqList *C) {
+    int i = 0, j = 0, k = 0;
+    while (i < A->length && j < B->length && k < C->length) {
+        if (A->data[i] == B->data[j] && B->data[j] == C->data[k]) {
+            printf("simple item: %d\n", A->data[i]);
+            i++; j++; k++;
+        } else {
+            // 找到三个元素中的最大值
+            ElemType temp = A->data[i] > B->data[j] ? A->data[i] : B->data[j];
+            ElemType max =  temp > C->data[k] ? temp : C->data[k];
 
+            if (A->data[i] < max) {
+                i++;
+            }
+            if (B->data[j] < max) {
+                j++;
+            }
+            if (C->data[k] < max) {
+                k++;
+            }
+        }
+    }
+}
 
 
 int main() {
+
+    SqList A;
+    InitList(&A);
+    ListInsert(&A, 1, 1);
+    ListInsert(&A, 2, 2);
+    ListInsert(&A, 3, 3);
+    SqList B;
+    InitList(&B);
+    ListInsert(&B, 1, 2);
+    ListInsert(&B, 2, 3);
+    ListInsert(&B, 3, 4);
+    SqList C;
+    InitList(&C);
+    ListInsert(&C, 1, -1);
+    ListInsert(&C, 2, 0);
+    ListInsert(&C, 3, 2);
+
+    printSameItem(&A, &B, &C);
 
 }
