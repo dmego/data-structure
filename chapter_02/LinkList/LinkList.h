@@ -14,6 +14,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>     // 提供 malloc、realloc、free、exit 原型
+#include <stdbool.h>
 #include "Status.h"
 
 /* 单链表的元素类型定义 (int 类型的别名) */
@@ -30,70 +31,47 @@ typedef LNode* LinkList;
 
 
 /**
- * 初始化一个单链表
- * @param list
- * @return
+ * 初始化一个带头结点单链表
  */
-Status initLinkList(LinkList* list);
+bool initLinkList(LinkList *list);
 
+/**
+ * 返回带头结点单链表的长度
+ */
+int length(LinkList list);
 
 /**
  * 在单链表 list 的 index 位置插入元素 elem
- * @param list
- * @param index
- * @param elem
- * @return
  */
-Status insertElem(LinkList list, int index, ElemType elem);
-
+bool insertElem(LinkList list, int index, ElemType elem);
 
 /**
  * 取出 单链表 list 的 index 位置的元素， 赋值给 elem 指针指向的地址
- * @param list
- * @param index
- * @param elem
- * @return
  */
-Status getElem(LinkList list, int index, ElemType* elem);
+void getElem(LinkList list, int index, ElemType *elem);
 
 /**
  * 删除 单链表 index 位置的元素，并将删除的元素赋值给 elem
- * @param list
- * @param index
- * @param elem
- * @return
  */
-Status deleteElem(LinkList list, int index, ElemType* elem);
-
+bool deleteElem(LinkList list, int index, ElemType *elem);
 
 /**
  * 在单链表中定位 elem 元素的位置
- * @param list
- * @param elem
- * @return
  */
 int locateElem(LinkList list, ElemType elem);
 
 /**
  * 前插法创建一个单链表
- * @param list
- * @param num 插入元素个数
- * @return
  */
-Status headCreateList(LinkList* list, int num);
+bool headCreateList(LinkList *list, int num);
 
 /**
  * 后插法创建一个单链表
- * @param list
- * @param num 插入元素个数
- * @return
  */
-Status tailCreateList(LinkList* list, int num);
-
+bool tailCreateList(LinkList *list, int num);
 
 /**
  * 遍历输出单链表
- * @param list
  */
 void printLinkList(LinkList list);
 

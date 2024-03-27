@@ -6,10 +6,8 @@
  *      LinkList 是 LNode 指针类型
  *      这里的 list 是 LinkList 指针，也就是指向 链表头指针 的指针
  *      (*list) 是取出了访问 list 指向的地址，也就是 链表头指针
- * @param list
- * @return
  */
-Status initLinkList(LinkList* list) {
+bool initLinkList(LinkList *list) {
     // malloc(sizeof(LNode)): 新建一个 LNode 节点，作为头结点
     // 然后 链表的头指针(*list) 指向 新建头结点的地址
     (*list) = malloc(sizeof(LNode));
@@ -20,21 +18,30 @@ Status initLinkList(LinkList* list) {
     // 将链表头结点的指针域置为 NULL
     (*list)->next = NULL;
 
-    return OK;
+    return true;
+}
+
+int length(LinkList list) {
+    // 如果 链表不存在，返回 0
+    if (list == NULL) return 0;
+    int len = 0;
+    // 定义头指针(指向首元结点)，从头遍历链表，统计长度
+    LNode *dummy = list->next;
+    while (dummy != NULL) {
+        len++;
+        dummy = dummy->next;
+    }
+    return len;
 }
 
 /**
  * 在单链表 list 的 index 位置插入元素 elem
- * @param list
- * @param index
- * @param elem
- * @return
  */
-Status insertElem(LinkList list, int index, ElemType elem) {
+bool insertElem(LinkList list, int index, ElemType elem) {
     // 如果 链表不存在，返回 ERROR
-    if (list == NULL) return ERROR;
+    if (list == NULL) return false;
     // 校验 index 位置是否合法
-    if (index < 1) return ERROR;
+    if (index < 1) return false;
 
     // 头指针
     LNode *dummy = list;
@@ -48,7 +55,7 @@ Status insertElem(LinkList list, int index, ElemType elem) {
     }
 
     // 如果遍历到头了(dummy = null) 或者 下标 i 指向到了 index - 1 位置，返回 ERROR
-    if (dummy == NULL || i > index - 1) return ERROR;
+    if (dummy == NULL || i > index - 1) return false;
 
     // 新建一个 LNode 结点，使用 node 指针指向新结点地址
     LNode* node = malloc(sizeof(LNode));
@@ -62,21 +69,17 @@ Status insertElem(LinkList list, int index, ElemType elem) {
     // dummy 的 next 指针 指向 新结点，也就是让新结点插入到了 index - 1 下标 (index 位置)
     dummy->next = node;
 
-    return OK;
+    return true;
 }
 
 /**
  * 取出 单链表 list 的 index 位置的元素， 赋值给 elem 指针指向的地址
- * @param list
- * @param index
- * @param elem
- * @return
  */
-Status getElem(LinkList list, int index, ElemType* elem) {
+void getElem(LinkList list, int index, ElemType* elem) {
     // 如果 链表不存在 或者 链表中没有存储元素，返回 ERROR
-    if (list == NULL || list->next == NULL) return ERROR;
+    if (list == NULL || list->next == NULL) return;
     // 校验 index 位置是否合法
-    if (index < 1) return ERROR;
+    if (index < 1) return;
 
     // 头指针
     LNode* dummy = list;
@@ -90,7 +93,7 @@ Status getElem(LinkList list, int index, ElemType* elem) {
         i++;
     }
     // 如果遍历到头了(dummy = null) 或者 下标 i 指向到了 index 位置，返回 ERROR
-    if (dummy == NULL || i > index) return ERROR;
+    if (dummy == NULL || i > index) return;
     // 将 dummy 指针指向的结点的数据域 赋值给 elem 指针 指向的地址
     *elem = dummy->data;
 
@@ -105,22 +108,16 @@ Status getElem(LinkList list, int index, ElemType* elem) {
      if (dummy->next == NULL || i > index - 1) return ERROR;
      *elem = dummy->next->data;
     */
-
-    return OK;
 }
 
 /**
  * 删除 单链表 index 位置的元素，并将删除的元素赋值给 elem
- * @param list
- * @param index
- * @param elem
- * @return
  */
-Status deleteElem(LinkList list, int index, ElemType* elem) {
+bool deleteElem(LinkList list, int index, ElemType *elem) {
     // 如果 链表不存在 或者 链表中没有存储元素，返回 ERROR
-    if (list == NULL || list->next == NULL) return ERROR;
+    if (list == NULL || list->next == NULL) return false;
     // 校验 index 位置是否合法
-    if (index < 1) return ERROR;
+    if (index < 1) return false;
     // 头指针
     LNode* dummy = list;
     // 从头结点开始遍历
@@ -132,7 +129,7 @@ Status deleteElem(LinkList list, int index, ElemType* elem) {
         i++;
     }
 
-    if (dummy->next == NULL || i > index - 1) return ERROR;
+    if (dummy->next == NULL || i > index - 1) return false;
     // 要删除的元素(这里取的是 dummy->next 所以前面的判断是判断 dummy->next 是否存在)
     LNode *delete = dummy->next;
     // 保存要删除元素的值到 elem
@@ -144,14 +141,11 @@ Status deleteElem(LinkList list, int index, ElemType* elem) {
     // 回收要删除元素的内存
     free(delete);
 
-    return OK;
+    return true;
 }
 
 /**
  * 在单链表中定位 elem 元素的位置
- * @param list
- * @param elem
- * @return
  */
 int locateElem(LinkList list, ElemType elem) {
     // 如果 链表不存在 或者 链表中没有存储元素，返回 -1
@@ -172,12 +166,9 @@ int locateElem(LinkList list, ElemType elem) {
 
 /**
  * 前插法创建一个单链表
- * @param list
- * @param num 插入元素个数
- * @return
  */
-Status headCreateList(LinkList* list, int num) {
-    if (num < 1) return ERROR;
+bool headCreateList(LinkList *list, int num) {
+    if (num < 1) return false;
     printf("请降序输入 %d 个元素: ", num);
     // 头指针 指向头结点，在插入过程中，头指针一直指向头结点
     LNode* head = *list;
@@ -192,17 +183,14 @@ Status headCreateList(LinkList* list, int num) {
         node->next = head->next;
         head->next = node;
     }
-    return OK;
+    return true;
 }
 
 /**
  * 后插法创建一个单链表
- * @param list
- * @param num 插入元素个数
- * @return
  */
-Status tailCreateList(LinkList* list, int num) {
-    if (num < 1) return ERROR;
+bool tailCreateList(LinkList *list, int num) {
+    if (num < 1) return false;
     printf("请升序输入 %d 个元素: ", num);
     // 尾指针，开始指针头结点，插入结点后，指向插入的结点
     LNode* tail = *list;
@@ -218,7 +206,7 @@ Status tailCreateList(LinkList* list, int num) {
         // 改变尾指针的指向
         tail = tail->next;
     }
-    return OK;
+    return true;
 }
 
 
