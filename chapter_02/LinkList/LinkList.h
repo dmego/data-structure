@@ -23,17 +23,17 @@ typedef int ElemType;
 /* 单链表的数据结构 */
 typedef struct LNode {
     ElemType data;      // 链表的数据节点(保存的是实际的值而非指针)
-    struct LNode* next; // 链表下一个节点的指针(下一个节点也是 LNode 类型，这里保存的是指向下一个节点地址的指针)
+    struct LNode *next; // 链表下一个节点的指针(下一个节点也是 LNode 类型，这里保存的是指向下一个节点地址的指针)
 } LNode;
 
 /* LinkList 为指向结构体 LNode 的指针类型 (用来定义单链表的头指针) */
-typedef LNode* LinkList;
+typedef LNode *LinkList;
 
 
 /**
  * 初始化一个带头结点单链表
  */
-bool initLinkList(LinkList *list);
+bool InitList(LinkList *list);
 
 /**
  * 返回带头结点单链表的长度
@@ -69,6 +69,11 @@ bool headCreateList(LinkList *list, int num);
  * 后插法创建一个单链表
  */
 bool tailCreateList(LinkList *list, int num);
+
+/**
+ * 后插法创建一个单链表，数据来源一个数组
+ */
+bool tailCreateListByArray(LinkList *list, const int data[], int num);
 
 /**
  * 遍历输出单链表

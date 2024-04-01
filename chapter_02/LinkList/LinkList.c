@@ -6,8 +6,12 @@
  *      LinkList 是 LNode 指针类型
  *      这里的 list 是 LinkList 指针，也就是指向 链表头指针 的指针
  *      (*list) 是取出了访问 list 指向的地址，也就是 链表头指针
+ *
+ * 这里为什么要用 *list 作为参数？
+ *   因为链表的头指针是一个指针，所以需要传递指针的指针，这样才能修改头指针的值
+ *
  */
-bool initLinkList(LinkList *list) {
+bool InitList(LinkList *list) {
     // malloc(sizeof(LNode)): 新建一个 LNode 节点，作为头结点
     // 然后 链表的头指针(*list) 指向 新建头结点的地址
     (*list) = malloc(sizeof(LNode));
@@ -209,11 +213,29 @@ bool tailCreateList(LinkList *list, int num) {
     return true;
 }
 
+bool tailCreateListByArray(LinkList *list, const ElemType data[], int num) {
+    if (num < 1) return false;
+    // 位指针
+    LNode *tail = *list;
+    for (int i = 0; i < num; i++) {
+        LNode *node = malloc(sizeof(LNode));
+        if (node == NULL) {
+            exit(OVERFLOW);
+        }
+        node->next = NULL;
+        node->data = data[i];
+        tail->next = node;
+        tail = tail->next;
+    }
+    return true;
+}
+
 
 void printLinkList(LinkList list) {
     LNode* dummy = list->next;
     while(dummy != NULL) {
-        printf("%d ,", dummy->data);
+        printf("%d -> ", dummy->data);
         dummy = dummy->next;
     }
+    printf("\n");
 }
