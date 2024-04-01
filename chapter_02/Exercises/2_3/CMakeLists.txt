@@ -1,0 +1,28 @@
+# 包含公共库
+include_directories(${CMAKE_SOURCE_DIR}/status)
+include_directories(${CMAKE_SOURCE_DIR}/chapter_02/SqList)
+# 包含静态库路径
+link_directories(../../../lib)
+link_libraries(SqList_lib)
+
+# 生成可执行文件
+add_executable(exercises2.3.1 exercises2.3.1.c)
+add_executable(exercises2.3.2 exercises2.3.2.c)
+add_executable(exercises2.3.3 exercises2.3.3.c)
+add_executable(exercises2.3.4 exercises2.3.4.c)
+add_executable(exercises2.3.5 exercises2.3.5.c)
+add_executable(exercises2.3.6 exercises2.3.6.c)
+add_executable(exercises2.3.7 exercises2.3.7.c)
+add_executable(exercises2.3.8 exercises2.3.8.c)
+add_executable(exercises2.3.9 exercises2.3.9.c)
+add_executable(exercises2.3.10 exercises2.3.10.c)
+add_executable(exercises2.3.11 exercises2.3.11.c)
+add_executable(exercises2.3.12 exercises2.3.12.c)
+add_executable(exercises2.3.13 exercises2.3.13.c)
+add_executable(exercises2.3.14 exercises2.3.14.c)
+add_executable(exercises2.3.15 exercises2.3.15.c)
+add_executable(exercises2.3.16 exercises2.3.16.c)
+add_executable(exercises2.3.17 exercises2.3.17.c)
+add_executable(exercises2.3.18 exercises2.3.18.c)
+add_executable(exercises2.3.19 exercises2.3.19.c)
+add_executable(exercises2.3.20 exercises2.3.20.c)
