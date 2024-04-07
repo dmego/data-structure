@@ -9,10 +9,12 @@ void reverseList(LinkList list) {
     // node 表示要逆置结点的前一个结点 (首元结点不用逆置，node 指向首元结点)
     LNode *node = list->next;
     while (node->next != NULL) {
-        // 先将 curr 从链表中断开
+        // 先将要逆置的 curr 结点从链表中断开
         LNode *curr = node->next;
         node->next = curr->next;
-        // 再将 curr 插入到最前面
+        curr->next = NULL;
+
+        // 再将 curr 插入到最头结点前面(头插法)
         curr->next = head->next;
         head->next = curr;
 
@@ -23,7 +25,7 @@ void reverseList(LinkList list) {
 
 int main() {
     LinkList list;
-    InitList(&list);
+    initLinkList(&list);
     int num[] = {1,2,3,4,5};
     tailCreateListByArray(&list, num, 5);
     printf("before:\n");

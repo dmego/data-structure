@@ -7,14 +7,14 @@ int main() {
     LinkList list;
     ElemType elem;
 
-    initLinkList(&list);
+    InitList(&list);
 
     //headCreateList(&list, 5);
 
     //printLinkList(list);
 
     LinkList list2;
-    initLinkList(&list2);
+    InitList(&list2);
     tailCreateList(&list2, 5);
 
     printLinkList(list2);

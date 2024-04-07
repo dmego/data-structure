@@ -33,7 +33,7 @@ typedef LNode *LinkList;
 /**
  * 初始化一个带头结点单链表
  */
-bool InitList(LinkList *list);
+bool initLinkList(LinkList *list);
 
 /**
  * 返回带头结点单链表的长度

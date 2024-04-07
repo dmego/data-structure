@@ -28,7 +28,7 @@ void delXFromList(LinkList list, ElemType x) {
 int main() {
 
     LinkList list;
-    InitList(&list);
+    initLinkList(&list);
     int num[] = {1,2,3,4,5,3,2,4};
     tailCreateListByArray(&list, num, 8);
     printf("before del:\n");

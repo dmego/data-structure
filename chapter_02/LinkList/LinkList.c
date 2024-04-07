@@ -11,7 +11,7 @@
  *   因为链表的头指针是一个指针，所以需要传递指针的指针，这样才能修改头指针的值
  *
  */
-bool InitList(LinkList *list) {
+bool initLinkList(LinkList *list) {
     // malloc(sizeof(LNode)): 新建一个 LNode 节点，作为头结点
     // 然后 链表的头指针(*list) 指向 新建头结点的地址
     (*list) = malloc(sizeof(LNode));

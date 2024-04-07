@@ -26,7 +26,7 @@ void delMinNode(LinkList list) {
 
 int main() {
     LinkList list;
-    InitList(&list);
+    initLinkList(&list);
     int num[] = {6,2,3,4,5};
     tailCreateListByArray(&list, num, 5);
     printf("before del:\n");
