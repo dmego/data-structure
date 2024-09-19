@@ -96,7 +96,7 @@ Status DeQueue(SqQueue* Q, QElemType* elem) {
     return OK;
 }
 
-/**
+ /**
  * 入队(在队尾入队元素)
  * @param Q
  * @param elem

@@ -80,7 +80,7 @@ void sort(SqList *list, int low, int high) {
     // 当 low == high 时，区域[low, high] 只有一个元素时，所有元素处于正确位置，无须排序，递归结束
     if (low >= high) return;
     // 采用双边循环法，对 [low, high] 区域进行一趟遍历，返回枢轴下标【一趟排序，枢轴元素已处于正确位置】
-    int pivotIndex = partition2(list, low, high);
+    int pivotIndex = partition1(list, low, high);
     // 递归对 枢轴左边元素进行排序
     sort(list, low, pivotIndex - 1);
     // 递归对 枢轴右边元素进行排序

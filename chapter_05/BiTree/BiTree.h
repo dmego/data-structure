@@ -17,12 +17,12 @@ typedef int TElemType;
 /* 二叉树结点定义 */
 typedef struct BiTNode{
     TElemType data;          // 结点数据
-    struct BiTNode* lchild;  // 结点左孩子指针
-    struct BiTNode* rchild;  // 结点右孩子指针
+    struct BiTNode *lchild;  // 结点左孩子指针
+    struct BiTNode *rchild;  // 结点右孩子指针
 } BiTNode;
 
 /* 指向二叉树结点的指针 */
-typedef BiTNode* BiTree;
+typedef BiTNode *BiTree;
 
 
 /**
@@ -30,7 +30,7 @@ typedef BiTNode* BiTree;
  * @param T
  * @return
  */
-Status CreateBiTree(BiTree* T);
+Status CreateBiTree(BiTree *T);
 
 
 /**
